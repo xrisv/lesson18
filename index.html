@@ -2,15 +2,38 @@
 <html>
 <head>
   <script>
+
+var people = [
+      { name: 'მარიამ', surname: 'მამანაშვილი', age: 25, profession: 'პროგრამისტი' },
+      { name: 'გიორგი', surname: 'ჯავახიშვილი', age: 30, profession: 'მარკეტინგის მენეჯერი' },
+      { name: 'ნინო', surname: 'გოგოლაძე', age: 22, profession: 'დიზაინერი' },
+      { name: 'ლევან', surname: 'კახიძე', age: 18, profession: 'კონსტრუქტორი' },
+      { name: 'ელენე', surname: 'გიორგაძე', age: 28, profession: 'მედიკი' }
+    ];
+
+    
+    var filteredPeople = people.filter(function(person) {
+      return person.age > 18;
+    });
+
+    document.write('<ul>');
+    filteredPeople.forEach(function(person) {
+      document.write('<li>' + person.name + ' ' + person.surname + ', ასაკი: ' + person.age + ', პროფესია: ' + person.profession + '</li>');
+    });
+    document.write('</ul>');
+
+
+
+
+
+
     function validateForm() {
       var firstName = document.forms["myForm"]["firstName"].value;
       var lastName = document.forms["myForm"]["lastName"].value;
       var email = document.forms["myForm"]["email"].value;
       var password = document.forms["myForm"]["password"].value;
       var confirmPassword = document.forms["myForm"]["confirmPassword"].value;
-      var description = document.forms["myForm"]["description"].value;
-
-      // Validate first name
+      var description = document.forms["myForm"]["description"].value
       if (firstName.length < 6) {
         document.getElementById("firstNameError").innerText = "Error: First name must be at least 6 characters";
         return false;
@@ -18,7 +41,7 @@
         document.getElementById("firstNameError").innerText = "";
       }
 
-      // Validate last name
+      
       if (lastName.length < 6) {
         document.getElementById("lastNameError").innerText = "Error: Last name must be at least 6 characters";
         return false;
@@ -26,7 +49,7 @@
         document.getElementById("lastNameError").innerText = "";
       }
 
-      // Validate email using regex
+      
       var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         document.getElementById("emailError").innerText = "Error: Invalid email address";
@@ -35,7 +58,7 @@
         document.getElementById("emailError").innerText = "";
       }
 
-      // Validate password
+      
       if (password.length < 6) {
         document.getElementById("passwordError").innerText = "Error: Password must be at least 6 characters";
         return false;
@@ -43,7 +66,7 @@
         document.getElementById("passwordError").innerText = "";
       }
 
-      // Validate password confirmation
+      
       if (password !== confirmPassword) {
         document.getElementById("confirmPasswordError").innerText = "Error: Passwords do not match";
         return false;
@@ -51,7 +74,7 @@
         document.getElementById("confirmPasswordError").innerText = "";
       }
 
-      // Validate description length
+      
       if (description.length > 100) {
         document.getElementById("descriptionError").innerText = "Error: Description must not exceed 100 characters";
         return false;
@@ -59,7 +82,22 @@
         document.getElementById("descriptionError").innerText = "";
       }
 
-      return true; // Form is valid
+      return true; 
+    }
+
+    function clearInput() {
+      var inputField = document.getElementById("dynamicInput");
+      var inputValue = inputField.value;
+
+      if (inputValue.trim() !== "") {
+        var list = document.getElementById("valuesList");
+        var listItem = document.createElement("li");
+        listItem.appendChild(document.createTextNode(inputValue));
+        list.appendChild(listItem);
+      }
+
+      
+      inputField.value = "";
     }
   </script>
 </head>
@@ -83,6 +121,14 @@
 
   Description: <textarea name="description"></textarea>
   <p id="descriptionError" style="color: red;"></p>
+
+  
+  <label for="dynamicInput">Dynamic Input:</label>
+  <input type="text" id="dynamicInput">
+  <button type="button" onclick="clearInput()">Add to List</button>
+
+ 
+  <ul id="valuesList"></ul>
 
   <input type="submit" value="Register">
 </form>
