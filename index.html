@@ -10,7 +10,7 @@
       var confirmPassword = document.forms["myForm"]["confirmPassword"].value;
       var description = document.forms["myForm"]["description"].value;
 
-      // Validate first name
+     
       if (firstName.length < 6) {
         document.getElementById("firstNameError").innerText = "Error: First name must be at least 6 characters";
         return false;
@@ -18,7 +18,6 @@
         document.getElementById("firstNameError").innerText = "";
       }
 
-      // Validate last name
       if (lastName.length < 6) {
         document.getElementById("lastNameError").innerText = "Error: Last name must be at least 6 characters";
         return false;
@@ -26,7 +25,7 @@
         document.getElementById("lastNameError").innerText = "";
       }
 
-      // Validate email using regex
+      
       var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         document.getElementById("emailError").innerText = "Error: Invalid email address";
@@ -35,7 +34,7 @@
         document.getElementById("emailError").innerText = "";
       }
 
-      // Validate password
+     
       if (password.length < 6) {
         document.getElementById("passwordError").innerText = "Error: Password must be at least 6 characters";
         return false;
@@ -43,7 +42,7 @@
         document.getElementById("passwordError").innerText = "";
       }
 
-      // Validate password confirmation
+     
       if (password !== confirmPassword) {
         document.getElementById("confirmPasswordError").innerText = "Error: Passwords do not match";
         return false;
@@ -51,7 +50,6 @@
         document.getElementById("confirmPasswordError").innerText = "";
       }
 
-      // Validate description length
       if (description.length > 100) {
         document.getElementById("descriptionError").innerText = "Error: Description must not exceed 100 characters";
         return false;
@@ -59,7 +57,7 @@
         document.getElementById("descriptionError").innerText = "";
       }
 
-      return true; // Form is valid
+      return true; 
     }
   </script>
 </head>
