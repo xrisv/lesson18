@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function validateForm() {
+      var firstName = document.forms["myForm"]["firstName"].value;
+      var lastName = document.forms["myForm"]["lastName"].value;
+      var email = document.forms["myForm"]["email"].value;
+      var password = document.forms["myForm"]["password"].value;
+      var confirmPassword = document.forms["myForm"]["confirmPassword"].value;
+      var description = document.forms["myForm"]["description"].value;
+
+      // Validate first name
+      if (firstName.length < 6) {
+        document.getElementById("firstNameError").innerText = "Error: First name must be at least 6 characters";
+        return false;
+      } else {
+        document.getElementById("firstNameError").innerText = "";
+      }
+
+      // Validate last name
+      if (lastName.length < 6) {
+        document.getElementById("lastNameError").innerText = "Error: Last name must be at least 6 characters";
+        return false;
+      } else {
+        document.getElementById("lastNameError").innerText = "";
+      }
+
+      // Validate email using regex
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById("emailError").innerText = "Error: Invalid email address";
+        return false;
+      } else {
+        document.getElementById("emailError").innerText = "";
+      }
+
+      // Validate password
+      if (password.length < 6) {
+        document.getElementById("passwordError").innerText = "Error: Password must be at least 6 characters";
+        return false;
+      } else {
+        document.getElementById("passwordError").innerText = "";
+      }
+
+      // Validate password confirmation
+      if (password !== confirmPassword) {
+        document.getElementById("confirmPasswordError").innerText = "Error: Passwords do not match";
+        return false;
+      } else {
+        document.getElementById("confirmPasswordError").innerText = "";
+      }
+
+      // Validate description length
+      if (description.length > 100) {
+        document.getElementById("descriptionError").innerText = "Error: Description must not exceed 100 characters";
+        return false;
+      } else {
+        document.getElementById("descriptionError").innerText = "";
+      }
+
+      return true; // Form is valid
+    }
+  </script>
+</head>
+<body>
+
+<form name="myForm" onsubmit="return validateForm()" method="post">
+  First Name: <input type="text" name="firstName">
+  <p id="firstNameError" style="color: red;"></p>
+
+  Last Name: <input type="text" name="lastName">
+  <p id="lastNameError" style="color: red;"></p>
+
+  Email: <input type="text" name="email">
+  <p id="emailError" style="color: red;"></p>
+
+  Password: <input type="password" name="password">
+  <p id="passwordError" style="color: red;"></p>
+
+  Confirm Password: <input type="password" name="confirmPassword">
+  <p id="confirmPasswordError" style="color: red;"></p>
+
+  Description: <textarea name="description"></textarea>
+  <p id="descriptionError" style="color: red;"></p>
+
+  <input type="submit" value="Register">
+</form>
+
+</body>
+</html>
